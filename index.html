@@ -27,12 +27,11 @@
 
     map.on('load', () => {
       map.flyTo({
-        center: [-116.7081, 35.3967], // Long, Lat
-        zoom: 12.5, // Adjust as needed
-        bearing: 225, // Southwest
-        pitch: 0, // Look straight ahead
-        speed: 0.5, // Smooth fly-in
-        curve: 1, // Gentle curve
+        center: [-116.7081, 35.3967], // [longitude, latitude]
+        zoom: 12.5,                   // Adjust zoom for a lower view
+        bearing: 225,                 // Facing Southwest toward the ridgeline
+        pitch: 10,                    // Slight upward tilt
+        duration: 10000,              // Duration of the fly-in animation in ms (adjust as needed)
         essential: true
       });
 
