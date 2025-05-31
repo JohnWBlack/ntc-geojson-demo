@@ -27,13 +27,12 @@
 
     map.on('load', () => {
       map.flyTo({
-        center: [-116.7081, 35.3967],
-        zoom: 15.5,    // Closer ground-level perspective (~2998 ft equivalent)
-        pitch: 60,     // Maintain a 60-degree tilt
-        bearing: 225,  // Southwest orientation
-        speed: 0.4,
-        curve: 1.2,
-        duration: 12000,
+        center: [-116.7081, 35.3967], // Long, Lat
+        zoom: 12.5, // Adjust as needed
+        bearing: 225, // Southwest
+        pitch: 0, // Look straight ahead
+        speed: 0.5, // Smooth fly-in
+        curve: 1, // Gentle curve
         essential: true
       });
 
