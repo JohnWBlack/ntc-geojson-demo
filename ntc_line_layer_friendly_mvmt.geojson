@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unit Movement Alpha"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-116.85, 35.32],
+          [-116.82, 35.34],
+          [-116.79, 35.36]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unit Movement Bravo"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-116.84, 35.36],
+          [-116.81, 35.35],
+          [-116.78, 35.33]
+        ]
+      }
+    }
+  ]
+}

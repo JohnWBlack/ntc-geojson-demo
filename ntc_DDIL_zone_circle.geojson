@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "zone": "DDIL Zone Alpha" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-116.8, 35.3]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "zone": "DDIL Zone Bravo" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-116.75, 35.35]
+      }
+    }
+  ]
+}

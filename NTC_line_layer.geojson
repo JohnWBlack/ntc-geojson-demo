@@ -1,0 +1,19 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Patrol Route Alpha" // john-black.9gr1wlq5
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-116.7081, 35.3481],
+          [-116.7000, 35.3500],
+          [-116.6950, 35.3450]
+        ]
+      }
+    }
+  ]
+}

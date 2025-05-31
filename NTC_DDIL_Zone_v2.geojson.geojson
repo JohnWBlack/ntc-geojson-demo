@@ -1,0 +1,43 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "DDIL Zone Alpha",
+        "status": "Active"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-116.75, 35.36],
+            [-116.73, 35.36],
+            [-116.73, 35.34],
+            [-116.75, 35.34],
+            [-116.75, 35.36]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "DDIL Zone Bravo",
+        "status": "Active"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-116.71, 35.33],
+            [-116.69, 35.33],
+            [-116.69, 35.31],
+            [-116.71, 35.31],
+            [-116.71, 35.33]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+mapboxgl.accessToken = 'pk.eyJ1Ijoiam9obi1ibGFjayIsImEiOiJjbTRlancxMHAwOTV4Mm1wcHFmcHU4YjVhIn0.vmbjLXOSgABV-hzMjCXEIg'; // Replace with your token
+const map = new mapboxgl.Map({
+  container: 'map', // Your HTML container id
+  style: 'mapbox://styles/john-black/cmbc8gzkm001k01qq010pflg9', // Replace with your style ID
+  center: [-116.7, 35.3], // Fort Irwin approx center
+  zoom: 2, // Start global
+  pitch: 0, // Start flat
+  bearing: 0, // North
+  projection: 'globe'
+});
+
+map.on('load', () => {
+  // Animate to Fort Irwin
+  map.flyTo({
+    center: [-116.7, 35.3],
+    zoom: 9, // Zoom into NTC area
+    pitch: 60, // Tilt for 3D perspective
+    bearing: -20, // Slight rotation for drama
+    speed: 0.6, // Smooth speed
+    curve: 1.5,
+    easing: t => t
+  });
+
+  // Optional: Add a timeout to fade in overlays after fly-to
+  setTimeout(() => {
+    map.setPaintProperty('ntc-bounding-box', 'fill-opacity', 0.3);
+    map.setPaintProperty('ntc-ddil-zone', 'fill-opacity', 0.4);
+    map.setPaintProperty('ntc-decision-paralysis-zone', 'fill-opacity', 0.4);
+    map.setLayoutProperty('ntc-nato-symbol-layer', 'visibility', 'visible');
+  }, 5000); // Adjust timing
+});

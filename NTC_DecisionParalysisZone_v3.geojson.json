@@ -1,0 +1,43 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Decision Paralysis Zone 1",
+        "impact": "High"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-116.80, 35.33],
+            [-116.78, 35.33],
+            [-116.78, 35.31],
+            [-116.80, 35.31],
+            [-116.80, 35.33]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Decision Paralysis Zone 2",
+        "impact": "Medium"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-116.75, 35.37],
+            [-116.73, 35.37],
+            [-116.73, 35.35],
+            [-116.75, 35.35],
+            [-116.75, 35.37]
+          ]
+        ]
+      }
+    }
+  ]
+}

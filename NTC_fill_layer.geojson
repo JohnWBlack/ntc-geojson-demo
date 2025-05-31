@@ -1,0 +1,41 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "zone": "DDIL"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-116.7100, 35.3490],
+            [-116.7100, 35.3510],
+            [-116.7070, 35.3510],
+            [-116.7070, 35.3490],
+            [-116.7100, 35.3490]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone": "DecisionParalysis"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-116.7050, 35.3470],
+            [-116.7050, 35.3490],
+            [-116.7020, 35.3490],
+            [-116.7020, 35.3470],
+            [-116.7050, 35.3470]
+          ]
+        ]
+      }
+    }
+  ]
+}

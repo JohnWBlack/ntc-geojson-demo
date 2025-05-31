@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "zone": "Decision Paralysis Zone 1" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-116.78, 35.32]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "zone": "Decision Paralysis Zone 2" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-116.73, 35.33]
+      }
+    }
+  ]
+}
