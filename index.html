@@ -27,12 +27,12 @@
 
     map.on('load', () => {
       map.flyTo({
-        center: [-116.7054, 35.3963], // Adjusted coordinates 800 meters SE
-        zoom: 18,
-        bearing: 225,
-        pitch: 60,
-        speed: 0.3, // Smooth slow zoom
-        curve: 1,   // Smooth acceleration
+        center: [-116.7121, 35.4014], // 800 meters northwest of previous position
+        zoom: 18,                     // Ground-level perspective
+        bearing: 225,                 // Facing Southwest
+        pitch: 10,                    // Slightly upward
+        duration: 12000,              // Smooth fly-in
+        essential: true
       });
 
       // Load GeoJSON layers from GitHub
