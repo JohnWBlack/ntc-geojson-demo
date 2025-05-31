@@ -14,26 +14,26 @@
 <body>
   <div id="map"></div>
   <script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoiam9obi1ibGFjayIsImEiOiJjbWJjZ2p0ZnYwdjNzMmtuNjk0NjNlZnZ6In0.GDuTaZ6WQIJF4rTkrWYCBg'; // Replace with your token
+    mapboxgl.accessToken = 'mapbox://styles/john-black/cmbc8gzkm001k01qq010pflg9'; // Replace with your token
 
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/satellite-streets-v12', // Or your custom style
-      center: [-116.7081, 35.3963], // Final location: Electronic Combat Range
-      zoom: 2, // Start high up
+      style: 'mapbox://styles/mapbox/satellite-streets-v12',
+      center: [-116.7081, 35.3967],
+      zoom: 2,
       pitch: 0,
       bearing: 0
     });
 
     map.on('load', () => {
       map.flyTo({
-        center: [-116.7081, 35.3963],
-        zoom: 14.5, // Closer zoom for near-ground perspective
-        pitch: 60, // Tilt the camera down
-        bearing: 45, // Face northeast ridge line
-        speed: 0.4, // Slow speed for dramatic effect
-        curve: 1.2, // Smooth easing
-        duration: 12000, // 12 seconds
+        center: [-116.7081, 35.3967],
+        zoom: 14.5,
+        pitch: 60,
+        bearing: 225,
+        speed: 0.4,
+        curve: 1.2,
+        duration: 12000,
         essential: true
       });
 
