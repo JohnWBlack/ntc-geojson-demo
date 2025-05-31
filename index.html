@@ -27,12 +27,12 @@
 
     map.on('load', () => {
       map.flyTo({
-        center: [-116.7081, 35.3967], // Electronic Combat Range: [longitude, latitude]
-        zoom: 18,                     // Almost ground level
-        bearing: 225,                 // Facing Southwest toward the ridge
-        pitch: 10,                    // Slight upward view
-        duration: 12000,              // 12 seconds for a dramatic fly-in
-        essential: true
+        center: [-116.7054, 35.3963], // Adjusted coordinates 800 meters SE
+        zoom: 18,
+        bearing: 225,
+        pitch: 60,
+        speed: 0.3, // Smooth slow zoom
+        curve: 1,   // Smooth acceleration
       });
 
       // Load GeoJSON layers from GitHub
