@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>AresNet NTC Demo Map</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AresNet Tactical Demo</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet" />
   <style>
@@ -12,34 +12,56 @@
   </style>
 </head>
 <body>
-  <div id="map"></div>
-  <script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoiam9obi1ibGFjayIsImEiOiJjbWJjZ2p0ZnYwdjNzMmtuNjk0NjNlZnZ6In0.GDuTaZ6WQIJF4rTkrWYCBg';  // Replace with your actual token
+<div id="map"></div>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1Ijoiam9obi1ibGFjayIsImEiOiJjbWJjZ2p0ZnYwdjNzMmtuNjk0NjNlZnZ6In0.GDuTaZ6WQIJF4rTkrWYCBg'; // Replace with your token
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/satellite-streets-v12',
+    center: [-116.7, 35.4], // Approximate Fort Irwin
+    zoom: 8,
+    pitch: 0,
+    bearing: 0
+  });
 
-    const map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/satellite-streets-v12',
-      center: [-116.78, 35.3],
-      zoom: 10,
+  map.on('load', () => {
+    // Add layers
+    const layers = [
+      { id: 'ntc-fill', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/NTC_fill_layer.geojson', type: 'fill', paint: { 'fill-color': '#ff0000', 'fill-opacity': 0.4 } },
+      { id: 'ntc-line', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/NTC_line_layer.geojson', type: 'line', paint: { 'line-color': '#0000ff', 'line-width': 2 } },
+      { id: 'ntc-poi', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/ntc-nato-symbol-layer_v2.geojson', type: 'circle', paint: { 'circle-color': '#ff0000', 'circle-radius': 8 } },
+      { id: 'ntc-ddil', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/ntc_DDIL_zone_circle.geojson', type: 'circle', paint: { 'circle-color': '#ff9900', 'circle-radius': 40, 'circle-opacity': 0.4 } },
+      { id: 'ntc-paralysis', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/ntc_decisionparalysiszone_circle.geojson', type: 'circle', paint: { 'circle-color': '#ffcc00', 'circle-radius': 40, 'circle-opacity': 0.4 } },
+      { id: 'ntc-mvmt', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/ntc_line_layer_friendly_mvmt.geojson', type: 'line', paint: { 'line-color': '#00ff00', 'line-width': 2 } }
+    ];
+
+    layers.forEach(layer => {
+      map.addSource(layer.id, { type: 'geojson', data: layer.url });
+      map.addLayer({ id: layer.id, type: layer.type, source: layer.id, paint: layer.paint });
+    });
+
+    // Animate Fly-In
+    map.flyTo({
+      center: [-116.7, 35.4],
+      zoom: 12,
       pitch: 60,
-      bearing: 0
+      bearing: 0,
+      duration: 10000, // 10 seconds
+      essential: true
     });
 
-    map.on('load', () => {
-      const layers = [
-        { id: 'ntc-fill-layer', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/NTC_fill_layer.geojson', type: 'fill', paint: { 'fill-color': '#aaaaaa', 'fill-opacity': 0.3 } },
-        { id: 'ntc-line-layer', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/NTC_line_layer.geojson', type: 'line', paint: { 'line-color': '#0000ff', 'line-width': 2 } },
-        { id: 'ntc-line-friendly', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/ntc_line_layer_friendly_mvmt.geojson', type: 'line', paint: { 'line-color': '#00ff00', 'line-width': 2, 'line-dasharray': [2, 2] } },
-        { id: 'ntc-ddil-zone-circle', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/ntc_DDIL_zone_circle.geojson', type: 'circle', paint: { 'circle-radius': 80, 'circle-color': '#ff0000', 'circle-opacity': 0.4 } },
-        { id: 'ntc-decision-paralysis-zone-circle', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/ntc_decisionparalysiszone_circle.geojson', type: 'circle', paint: { 'circle-radius': 80, 'circle-color': '#ffcc00', 'circle-opacity': 0.4 } },
-        { id: 'ntc-nato-symbol-layer', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/ntc-nato-symbol-layer_v2.geojson', type: 'circle', paint: { 'circle-radius': 6, 'circle-color': '#ff0000', 'circle-stroke-color': '#000', 'circle-stroke-width': 1 } }
-      ];
-
-      layers.forEach(layer => {
-        map.addSource(layer.id, { type: 'geojson', data: layer.url });
-        map.addLayer({ id: layer.id, type: layer.type, source: layer.id, paint: layer.paint });
+    // Smoothly tilt and orient view
+    setTimeout(() => {
+      map.flyTo({
+        center: [-116.75, 35.35], // Eagle Crags area
+        zoom: 14,
+        pitch: 70,
+        bearing: 0, // North
+        duration: 10000,
+        essential: true
       });
-    });
-  </script>
+    }, 10000); // After first flyTo
+  });
+</script>
 </body>
 </html>
