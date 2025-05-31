@@ -3,51 +3,23 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {
-        "name": "Blue Force Command Post",
-        "type": "Friendly",
-        "icon": "command"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-116.82, 35.32]
-      }
+      "properties": { "name": "Blue Force Command Post", "type": "friendly" },
+      "geometry": { "type": "Point", "coordinates": [-116.6640, 35.4058] }
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Logistics Resupply Point",
-        "type": "Support",
-        "icon": "supply"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-116.81, 35.31]
-      }
+      "properties": { "name": "Red Force Jammer", "type": "adversary" },
+      "geometry": { "type": "Point", "coordinates": [-116.6628, 35.4043] }
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "ISR UAV",
-        "type": "ISR",
-        "icon": "uav"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-116.80, 35.33]
-      }
+      "properties": { "name": "ISR UAV", "type": "isr" },
+      "geometry": { "type": "Point", "coordinates": [-116.6635, 35.4050] }
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Red Force Jammer",
-        "type": "Adversary",
-        "icon": "jammer"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-116.79, 35.34]
-      }
+      "properties": { "name": "Logistics Resupply Point", "type": "logistics" },
+      "geometry": { "type": "Point", "coordinates": [-116.6632, 35.4060] }
     }
   ]
 }

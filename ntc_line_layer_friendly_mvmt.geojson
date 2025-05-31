@@ -3,29 +3,13 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {
-        "name": "Unit Movement Alpha"
-      },
+      "properties": { "name": "Friendly Route Alpha" },
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [-116.85, 35.32],
-          [-116.82, 35.34],
-          [-116.79, 35.36]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Unit Movement Bravo"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [-116.84, 35.36],
-          [-116.81, 35.35],
-          [-116.78, 35.33]
+          [-116.6642, 35.4062],
+          [-116.6635, 35.4055],
+          [-116.6625, 35.4045]
         ]
       }
     }

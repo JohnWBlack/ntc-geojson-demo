@@ -4,18 +4,12 @@
     {
       "type": "Feature",
       "properties": { "zone": "DDIL Zone Alpha" },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-116.8, 35.3]
-      }
+      "geometry": { "type": "Point", "coordinates": [-116.6640, 35.4060] }
     },
     {
       "type": "Feature",
       "properties": { "zone": "DDIL Zone Bravo" },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-116.75, 35.35]
-      }
+      "geometry": { "type": "Point", "coordinates": [-116.6620, 35.4040] }
     }
   ]
 }
