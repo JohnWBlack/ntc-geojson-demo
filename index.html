@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>AresNet Fly-In Demo (Polished)</title>
+  <title>AresNet Fly-In Demo</title>
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
@@ -14,12 +14,12 @@
 <body>
   <div id="map"></div>
   <script>
-    mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN'; // Replace with your token
+    mapboxgl.accessToken = 'pk.eyJ1Ijoiam9obi1ibGFjayIsImEiOiJjbWJjZ2p0ZnYwdjNzMmtuNjk0NjNlZnZ6In0.GDuTaZ6WQIJF4rTkrWYCBg'; // Replace with your token
 
     const map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/satellite-streets-v12',
-      center: [-116.7081, 35.3967],
+      center: [-116.7081, 35.3967], // Initial position
       zoom: 2,
       pitch: 0,
       bearing: 0
@@ -36,11 +36,12 @@
         essential: true
       });
 
-      // Add layers with labels and colors
+      // Add GeoJSON layers
       const layers = [
         { id: 'ntc-fill-layer', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/NTC_fill_layer.geojson', type: 'fill', paint: { 'fill-color': '#ff0000', 'fill-opacity': 0.4 } },
         { id: 'ntc-line-layer', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/NTC_line_layer.geojson', type: 'line', paint: { 'line-color': '#0000ff', 'line-width': 2 } },
-        { id: 'ntc-ddil-zone', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/ntc_DDIL_zone_circle.geojson', type: 'circle', paint: { 'circle-color': '#ff0000', 'circle-radius': 50, 'circle-opacity': 0.4 } },
+        { id: 'ntc-nato-symbol-layer', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/ntc-nato-symbol-layer_v2.geojson', type: 'circle', paint: { 'circle-color': '#ff0000', 'circle-radius': 6 } },
+        { id: 'ntc-ddil-zone', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/ntc_DDIL_zone_circle.geojson', type: 'circle', paint: { 'circle-color': '#ff9900', 'circle-radius': 50, 'circle-opacity': 0.4 } },
         { id: 'ntc-decisionparalysis-zone', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/ntc_decisionparalysiszone_circle.geojson', type: 'circle', paint: { 'circle-color': '#ffcc00', 'circle-radius': 50, 'circle-opacity': 0.4 } },
         { id: 'ntc-line-friendly', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/ntc_line_layer_friendly_mvmt.geojson', type: 'line', paint: { 'line-color': '#00ffff', 'line-width': 2 } }
       ];
@@ -48,37 +49,6 @@
       layers.forEach(layer => {
         map.addSource(layer.id, { type: 'geojson', data: layer.url });
         map.addLayer({ id: layer.id, type: layer.type, source: layer.id, paint: layer.paint });
-      });
-
-      // POIs with labels
-      map.addSource('ntc-nato-symbol-layer', {
-        type: 'geojson',
-        data: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo/main/ntc-nato-symbol-layer_v2.geojson'
-      });
-
-      map.addLayer({
-        id: 'ntc-nato-symbol-layer',
-        type: 'circle',
-        source: 'ntc-nato-symbol-layer',
-        paint: {
-          'circle-color': '#ff0000',
-          'circle-radius': 6
-        }
-      });
-
-      map.addLayer({
-        id: 'ntc-nato-symbol-labels',
-        type: 'symbol',
-        source: 'ntc-nato-symbol-layer',
-        layout: {
-          'text-field': ['get', 'name'],
-          'text-size': 12,
-          'text-offset': [0, 1.5],
-          'text-anchor': 'top'
-        },
-        paint: {
-          'text-color': '#ffffff'
-        }
       });
     });
   </script>
