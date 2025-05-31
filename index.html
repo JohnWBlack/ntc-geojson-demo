@@ -1,44 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>AresNet NTC Demo</title>
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
-    <style>
-        body { margin: 0; padding: 0; }
-        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
-    </style>
+  <meta charset="utf-8">
+  <title>AresNet GeoJSON Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+  <style>
+    body { margin: 0; padding: 0; }
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+  </style>
 </head>
 <body>
-<div id="map"></div>
-<script>
-    // Replace with your own token and style URL
+  <div id="map"></div>
+  <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoiam9obi1ibGFjayIsImEiOiJjbWJjZ2p0ZnYwdjNzMmtuNjk0NjNlZnZ6In0.GDuTaZ6WQIJF4rTkrWYCBg';
+
     const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/satellite-streets-v12', // Example: 'mapbox://styles/john-black/cl1a2b3c4d5e6f7g8h9i0jkl'
-        center: [-116.77, 35.33],
-        zoom: 8,
-        pitch: 0,
-        bearing: 0
+      container: 'map',
+      style: 'mapbox://styles/mapbox/satellite-streets-v12',
+      center: [-116.77, 35.33],
+      zoom: 10,
+      pitch: 60,
+      bearing: 0
     });
 
     map.on('load', () => {
-        console.log('Map loaded.');
+      // Load and add GeoJSON layers
+      const layers = [
+        { id: 'ntc-fill-layer', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo./refs/heads/main/NTC_fill_layer.geojson', color: '#ffff00', opacity: 0.5 },
+        { id: 'ntc-line-layer', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo./refs/heads/main/NTC_line_layer.geojson', color: '#0000ff' },
+        { id: 'ntc-nato-symbol-layer', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo./refs/heads/main/ntc-nato-symbol-layer_v2.geojson', color: '#ff0000' },
+        { id: 'ntc-ddil-zone', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo./refs/heads/main/ntc_DDIL_zone_circle.geojson', color: '#ff0000', radius: 15 },
+        { id: 'ntc-decision-paralysis', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo./refs/heads/main/ntc_decisionparalysiszone_circle.geojson', color: '#ffaa00', radius: 15 },
+        { id: 'ntc-line-friendly', url: 'https://raw.githubusercontent.com/JohnWBlack/ntc-geojson-demo./refs/heads/main/ntc_line_layer_friendly_mvmt.geojson', color: '#00ff00' }
+      ];
 
-        // Add camera animation
-        map.flyTo({
-            center: [-116.77, 35.33],
-            zoom: 13,
-            pitch: 60,
-            bearing: 0,
-            speed: 0.8,
-            curve: 1.2,
-            easing: (t) => t
+      layers.forEach(layer => {
+        map.addSource(layer.id, {
+          type: 'geojson',
+          data: layer.url
         });
+
+        if (layer.id.includes('line')) {
+          map.addLayer({
+            id: layer.id,
+            type: 'line',
+            source: layer.id,
+            paint: {
+              'line-color': layer.color,
+              'line-width': 2
+            }
+          });
+        } else if (layer.radius) {
+          map.addLayer({
+            id: layer.id,
+            type: 'circle',
+            source: layer.id,
+            paint: {
+              'circle-radius': layer.radius,
+              'circle-color': layer.color,
+              'circle-opacity': 0.6
+            }
+          });
+        } else {
+          map.addLayer({
+            id: layer.id,
+            type: 'fill',
+            source: layer.id,
+            paint: {
+              'fill-color': layer.color,
+              'fill-opacity': layer.opacity || 0.5
+            }
+          });
+        }
+      });
+
+      // Optional: Add navigation controls
+      map.addControl(new mapboxgl.NavigationControl());
     });
-</script>
+  </script>
 </body>
 </html>
